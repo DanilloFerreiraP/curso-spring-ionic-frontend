@@ -1,7 +1,7 @@
-<ion-content padding>
+<ion-content padding class="bg-image">
  <h3>Sistema de Pedidos</h3>
   <img src="assets/imgs/logo.png"  alt="logo" width="80%">
-  <form action="">
+  <form>
     <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input type="text"></ion-input>
@@ -12,9 +12,10 @@
       <ion-input type="password"></ion-input>
     </ion-item>
 
-    <button ion-button block color="secondary">Entrar</button>
+    <button ion-button block color="secondary" (click)="login()">Entrar</button>
 
   </form>
 
   <button ion-button block color="danger" outline>Registrar</button>
+ 
 </ion-content>
