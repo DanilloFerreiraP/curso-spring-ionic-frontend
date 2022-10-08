@@ -1,18 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular/components/app/menu-controller';
 import { CidadeDTO } from '../../models/cidade.dto';
 import { EstadoDTO } from '../../models/estado.dto';
 import { CidadeService } from '../../services/domain/cidade.service';
 import { ClienteService } from '../../services/domain/cliente.service';
 import { EstadoService } from '../../services/domain/estado.service';
-
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -28,12 +22,13 @@ export class SignupPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public menu:MenuController,
     public formBuilder: FormBuilder,
     public cidadeService: CidadeService,
     public estadoService: EstadoService,
     public clienteService: ClienteService,
     public alertCtrl: AlertController) {
-
+    
       this.formGroup = this.formBuilder.group({
         nome: ['Joaquim', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
         email: ['joaquim@ggmail.com', [Validators.required, Validators.email]],
@@ -51,6 +46,10 @@ export class SignupPage {
         estadoId : [null, [Validators.required]],
         cidadeId : [null, [Validators.required]]
       });
+  }
+
+  ionViewWillEnter() {
+    this.menu.swipeEnable(false);
   }
 
   ionViewDidLoad(){

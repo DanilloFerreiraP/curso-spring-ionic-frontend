@@ -26,13 +26,11 @@ export class HomePage {
   ionViewWillEnter() {
     this.menu.swipeEnable(false);
   }
-  ionViewDidLeave() {
-    this.menu.swipeEnable(true);
-  }
-
+   
   ionViewDidEnter(){
     this.auth.refreshToken().subscribe(response =>{
       this.auth.successfulLogin(response.headers.get('Authorization'));
+      this.menu.swipeEnable(true);
       this.navCtrl.setRoot('CategoriasPage');
     },
     error =>{});
@@ -41,6 +39,7 @@ export class HomePage {
   login(){
     this.auth.authenticate(this.creds).subscribe(response =>{
       this.auth.successfulLogin(response.headers.get('Authorization'));
+      this.menu.swipeEnable(true);
       this.navCtrl.setRoot('CategoriasPage');
     },
     error =>{});
